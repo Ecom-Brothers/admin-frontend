@@ -22,23 +22,36 @@ const DashboardPage = () =>
     setComponentStyle((prev)=>({...prev,[type]:e.target.value}))
   }
 
-  const changeContent = (e,id)=>{
+  const changeContent = (e,id,changeType)=>{
+    if(changeType === 'update')
     setContent((prev)=>{
       return prev?.map((item)=>(item?.id===id?{...item,value:e.target.value}:item))
     })
+    
+    if(changeType === 'remove')
+    setContent((prev)=>{
+      return prev?.filter((item)=>(item?.id!==id))
+    })
+
+    if(changeType === 'up'){
+      setContent((prev)=>{
+        
+      })
+    }
+
   }
 
   const addText = ()=>{
     setContent((prev)=>
     (
-      [...prev,{id:content.length,type:'text',value:'Enter text here...'}]
+      [...prev,{id:content.length,type:'text',value:'Text'}]
     ))
     }
 
   const addImage = ()=>{
       setContent((prev)=>
       (
-        [...prev,{id:content.length,type:'image',value:'Enter Image Url here...'}]
+        [...prev,{id:content.length,type:'image',value:'https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg'}]
       ))
       }
   
@@ -52,7 +65,7 @@ const DashboardPage = () =>
               return <div>
                     {{
                       'text': item.value,
-                      'image': <img src ={item.value}/>
+                      'image': <img src ={item.value}  style={{width:'100%',height:'100%'}}/>
                     }[item.type]}
                 </div>
             })
@@ -86,8 +99,8 @@ const DashboardPage = () =>
               content.map((item)=>(
                <>
                     {{
-                      'text': <> Text <TextField text={item} changeContent={changeContent}/></>,
-                      'image': <> Image Url <ImageField text={item} changeContent={changeContent}/></>,
+                      'text':  <TextField text={item} changeContent={changeContent}/>,
+                      'image':<ImageField text={item} changeContent={changeContent}/>
                     }[item.type]}
                </>
               ))

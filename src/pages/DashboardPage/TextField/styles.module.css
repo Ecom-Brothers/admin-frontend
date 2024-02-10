@@ -1,9 +1,10 @@
+
 .label{
     font-size:16px;
     color:rgb(46, 46, 46);
 }
 .input,.normal_input{
-    width:calc(100% - 28px);
+    width:calc(100% - 300px);
     padding:10px 14px;
     color:rgb(65, 65, 65);
     background-color: rgb(206, 206, 206);
@@ -14,27 +15,10 @@
     transition:border-bottom 0.1s;
 }
 
-.normal_input{
-    width:calc(100% - 30px)
-}
 
-
-.input:focus,.normal_input:focus{
-    border-bottom: 1px solid rgb(111, 141, 224);
-}
-
-.form{
-    padding:10px;
+.parent{
     display: flex;
-    align-items:center;
-    gap:20px;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding:10px 0;
 }
-.submit{
-    margin-top:10px;
-}
-.error_text{
-    color:rgb(252, 106, 106);
-    font-size:14px;
-}
-

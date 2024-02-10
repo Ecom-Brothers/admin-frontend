@@ -1,8 +1,15 @@
-import globalStyles from '../../Components/Layout/styles.module.css'
+import styles from './styles.module.css'
 
 const TextField = ({changeContent,text})=>{
     return (
-        <input type="text" className={globalStyles.input} onChange={(e)=>changeContent(e,text.id)} value={text.value}/>
+        <div className={styles.parent}>
+            Text
+           <input type="text" className={styles.input} onChange={(e)=>changeContent(e,text.id,'update')} value={text.value} placeholder='Enter text here'/>
+           <button onClick={(e)=>changeContent(e,text.id,'remove')}>Delete</button>
+           <button onClick={()=>changeContent()}>UP</button>
+           <button onClick={()=>changeContent()}>Down</button>
+
+        </div>
     )
 }
 
