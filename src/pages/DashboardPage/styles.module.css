@@ -1,0 +1,24 @@
+.dashboard{
+    display: flex;
+    height:700px;
+    margin:30px;
+    border:1px solid rgb(223, 223, 223);
+    border-radius: 4px;
+}
+
+.component_ui{
+    width:50%;
+    height:100%;
+    border:1px solid rgb(194, 194, 194);
+    border-radius: 4px 0 0 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.component_ui_setting{
+    width:50%;
+    height:100%;
+    border:1px solid rgb(221, 221, 221);
+    border-radius: 0 4px 4px 0;
+}

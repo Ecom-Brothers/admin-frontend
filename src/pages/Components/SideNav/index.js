@@ -9,23 +9,8 @@ const SideNav = ({ user, setUser, setUserLoaded }) => {
       label: 'Dashboard'
     },
     {
-      key: '/series',
-      label: 'Series'
-    },
-    {
-      key: '/match',
-      label: 'Match'
-    },
-    {
-      key: '/team',
-      label: 'Team'
-    },
-    {
-      key: '/player',
-      label: 'Player'
-    }, {
-      key: '/venue',
-      label: 'Venue'
+      key: '/question',
+      label: 'Question'
     }
   ]
   const location = useLocation()
