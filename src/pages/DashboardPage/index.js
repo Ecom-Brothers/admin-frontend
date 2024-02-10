@@ -2,6 +2,7 @@ import { useState } from 'react'
 import styles from './styles.module.css'
 import globalStyles from '../Components/Layout/styles.module.css'
 import TextField from './TextField'
+import ImageField from './ImageField'
 
 const DashboardPage = () => 
 {
@@ -34,6 +35,13 @@ const DashboardPage = () =>
     ))
     }
 
+  const addImage = ()=>{
+      setContent((prev)=>
+      (
+        [...prev,{id:content.length,type:'image',value:'Enter Image Url here...'}]
+      ))
+      }
+  
 
  return (
   <div className={styles.dashboard}>
@@ -43,7 +51,8 @@ const DashboardPage = () =>
             content.map((item)=>{
               return <div>
                     {{
-                      'text': item.value
+                      'text': item.value,
+                      'image': <img src ={item.value}/>
                     }[item.type]}
                 </div>
             })
@@ -76,12 +85,17 @@ const DashboardPage = () =>
           {
               content.map((item)=>(
                <>
-               Text <TextField text={item} changeContent={changeContent}/>
+                    {{
+                      'text': <> Text <TextField text={item} changeContent={changeContent}/></>,
+                      'image': <> Image Url <ImageField text={item} changeContent={changeContent}/></>,
+                    }[item.type]}
                </>
               ))
           }
         </div>
         <button onClick={()=>addText()}>Add Text</button>
+        <button onClick={()=>addImage()}>Add Image</button>
+
       </div>
   </div>
 )
