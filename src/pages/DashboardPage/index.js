@@ -2,7 +2,7 @@ import { useState } from 'react'
 import styles from './styles.module.css'
 import globalStyles from '../Components/Layout/styles.module.css'
 import TextField from './TextField'
-import ImageField from './ImageField'
+import { downComponent, removeComponent, upComponent } from './utils/functions'
 
 const DashboardPage = () => 
 {
@@ -15,12 +15,10 @@ const DashboardPage = () =>
       borderRadius:'4px',
       padding:'10px'
     })
+
+    const [selectedComponent,setSelectedComponent] = useState(0)
   
   const [content,setContent] = useState([])
-
-  const changeUiSetting = (e,type)=>{
-    setComponentStyle((prev)=>({...prev,[type]:e.target.value}))
-  }
 
   const changeContent = (e,id,changeType)=>{
     if(changeType === 'update')
@@ -29,22 +27,23 @@ const DashboardPage = () =>
     })
     
     if(changeType === 'remove')
-    setContent((prev)=>{
-      return prev?.filter((item)=>(item?.id!==id))
-    })
+    removeComponent({setContent,id})
 
     if(changeType === 'up'){
-      setContent((prev)=>{
-        
-      })
+      upComponent({setContent,id})
     }
-
+    if(changeType === 'down'){
+      downComponent({setContent,id})
+    }
+  
   }
+
+
 
   const addText = ()=>{
     setContent((prev)=>
     (
-      [...prev,{id:content.length,type:'text',value:'Text'}]
+      [...prev,{id:content.length,type:'text',value:'Text',componentStyle:{}}]
     ))
     }
 
@@ -64,7 +63,7 @@ const DashboardPage = () =>
             content.map((item)=>{
               return <div>
                     {{
-                      'text': item.value,
+                      'text': <div style={item.componentStyle}> {item.value}</div>,
                       'image': <img src ={item.value}  style={{width:'100%',height:'100%'}}/>
                     }[item.type]}
                 </div>
@@ -74,40 +73,21 @@ const DashboardPage = () =>
       </div>
       <div className={styles.component_ui_setting}>
         <div>
-          <div className={globalStyles.label}> Width: </div>
-          <input type="text" className={globalStyles.input} onChange={(e)=>changeUiSetting(e,'width')}  value={componentStyle.width}/>
-        </div>
-        <div>
-         <div className={globalStyles.label}> Height: </div>
-         <input type="text" className={globalStyles.input} onChange={(e)=>changeUiSetting(e,'height')} value={componentStyle.height}/>
-        </div>
-        <div>
-         <div className={globalStyles.label}> Background Color: </div>
-         <input type="text" className={globalStyles.input} onChange={(e)=>changeUiSetting(e,'backgroundColor')} value={componentStyle.backgroundColor}/>
-        </div>
-        <div>
-         <div className={globalStyles.label}> Padding </div>
-         <input type="text" className={globalStyles.input} onChange={(e)=>changeUiSetting(e,'padding')} value={componentStyle.padding}/>
-        </div>
-        <div>
-         <div className={globalStyles.label}> Border Radius </div>
-         <input type="text" className={globalStyles.input} onChange={(e)=>changeUiSetting(e,'borderRadius')} value={componentStyle.borderRadius}/>
-        </div>
-        <div>
-          <div className={globalStyles.label}> Content </div>
           {
               content.map((item)=>(
                <>
                     {{
-                      'text':  <TextField text={item} changeContent={changeContent}/>,
-                      'image':<ImageField text={item} changeContent={changeContent}/>
+                      'text':  <TextField text={item} changeContent={changeContent} selectedComponent={selectedComponent} setSelectedComponent={setSelectedComponent} content={content} setContent={setContent}/>,
+                      'image':  <TextField text={item} changeContent={changeContent} selectedComponent={selectedComponent} setSelectedComponent={setSelectedComponent} content={content} setContent={setContent}/>,
                     }[item.type]}
                </>
               ))
           }
         </div>
-        <button onClick={()=>addText()}>Add Text</button>
-        <button onClick={()=>addImage()}>Add Image</button>
+        <div className={styles.buttonCollector}>
+          <button onClick={()=>addText()}>Add Text</button>
+          <button onClick={()=>addImage()}>Add Image</button>
+        </div>
 
       </div>
   </div>
