@@ -3,6 +3,7 @@ import styles from './styles.module.css'
 import globalStyles from '../Components/Layout/styles.module.css'
 import TextField from './components/TextField'
 import { downComponent, parseJsonData, removeComponent, upComponent } from './utils/functions'
+import Output from './Output'
 
 const DashboardPage = () => 
 {
@@ -26,6 +27,12 @@ const DashboardPage = () =>
     setContent((prev)=>{
       return prev?.map((item)=>(item?.id===id?{...item,source:e.target.value}:item))
     })
+
+    if(changeType === 'update_href')   
+    setContent((prev)=>{
+      return prev?.map((item)=>(item?.id===id?{...item,href:e.target.value}:item))
+    })
+
     
     if(changeType === 'update')
     setContent((prev)=>{
@@ -44,7 +51,6 @@ const DashboardPage = () =>
   
   }
 
-
   const [jsonData,setJsonData] = useState("{}")
 
   const addText = ()=>{
@@ -61,22 +67,23 @@ const DashboardPage = () =>
       ))
       }
   
+  const addLink = () =>{
+      setContent((prev)=>
+      (
+        [...prev,{id:content.length,type:'link',value:'Click here'}]
+      ))
+
+  }
+
 
  return (
   <div className={styles.dashboard}>
       <div className={styles.component_ui}>
-        <div style={componentStyle}>
-          {
-            content.map((item)=>{
-              return <div>
-                    {{
-                      'text': <div style={item.componentStyle}> {item.value} {parseJsonData(jsonData)?.[item?.source]}</div>,
-                      'image': <img src ={item.value}  style={{width:'100%',height:'100%'}}/>
-                    }[item.type]}
-                </div>
-            })
-          }
-        </div>                
+        <Output
+          content={content}
+          componentStyle={componentStyle}       
+          jsonData={jsonData}
+        />
       </div>
       <div className={styles.component_ui_setting}>
         <div>
@@ -86,6 +93,7 @@ const DashboardPage = () =>
                     {{
                       'text':  <TextField text={item} changeContent={changeContent} selectedComponent={selectedComponent} setSelectedComponent={setSelectedComponent} content={content} setContent={setContent} jsonData={jsonData}/>,
                       'image':  <TextField text={item} changeContent={changeContent} selectedComponent={selectedComponent} setSelectedComponent={setSelectedComponent} content={content} setContent={setContent} jsonData={jsonData}/>,
+                      'link':  <TextField text={item} changeContent={changeContent} selectedComponent={selectedComponent} setSelectedComponent={setSelectedComponent} content={content} setContent={setContent} jsonData={jsonData}/>,
                     }[item.type]}
                </>
               ))
@@ -94,6 +102,7 @@ const DashboardPage = () =>
         <div className={styles.button_collector}>
           <button className={styles.action_button} onClick={()=>addText()}>Add Text</button>
           <button className={styles.action_button} onClick={()=>addImage()}>Add Image</button>
+          <button className={styles.action_button} onClick={()=>addLink()}>Add Link</button>
         </div>
 
       </div>

@@ -37,6 +37,10 @@ const UISetting = ({content,setContent,id})=>{
                 <input type="text" className={styles.input} onChange={(e)=>changeUiSetting(e.target.value,'borderRadius')} value={content?.[id]?.componentStyle?.borderRadius}/>
                 </div>
                 <div>
+                <div className={styles.label}> Align Left </div>
+                <input type="text" className={styles.input} onChange={(e)=>changeUiSetting(e.target.value,'textAlign')} value={content?.[id]?.componentStyle?.textAlign}/>
+                </div>
+                <div>
                 <div className={styles.label}> Background Color: </div>
                   <HexColorPicker color={content?.[id]?.componentStyle?.backgroundColor} onChange={(e)=>changeUiSetting(e,'backgroundColor')} />
                 </div>

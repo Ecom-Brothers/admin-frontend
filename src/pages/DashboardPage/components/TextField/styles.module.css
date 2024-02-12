@@ -4,7 +4,6 @@
     color:rgb(46, 46, 46);
 }
 .input,.normal_input{
-    width:calc(100% - 300px);
     padding:10px 14px;
     color:rgb(65, 65, 65);
     background-color: rgb(206, 206, 206);
@@ -24,6 +23,11 @@
     border: 1px solid rgb(163, 163, 163);
     border-radius: 4px;
     margin: 6px 0;
+}
+
+.flex{
+    display: flex;
+    gap:10px;    
 }
 
 .button_collector{
