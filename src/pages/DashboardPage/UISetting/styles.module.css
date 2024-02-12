@@ -1,0 +1,20 @@
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+}
+
+.label{
+    font-size:16px;
+    color:rgb(46, 46, 46);
+}
+.input{
+    padding:10px 14px;
+    color:rgb(65, 65, 65);
+    background-color: rgb(206, 206, 206);
+    outline: none;
+    border:1px solid rgba(255, 255, 255, 0);
+    font-size:16px;
+    border-bottom: 1px solid rgba(111, 141, 224, 0.404);
+    transition:border-bottom 0.1s;
+}

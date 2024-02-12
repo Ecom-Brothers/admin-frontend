@@ -39,3 +39,14 @@ export const downComponent = ({setContent,id})=>{
       })
 
 }
+
+
+export const parseJsonData =(data)=>{
+  try{
+    return JSON.parse(data)
+  }
+  catch(err){
+    console.log(err)
+    return {}
+  }
+}
