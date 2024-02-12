@@ -3,7 +3,6 @@ import { HexColorPicker } from "react-colorful"
 
 const UISetting = ({content,setContent,id})=>{
 
-    
     const changeUiSetting = (value,type)=>{
         setContent((prev)=>{
           return prev?.map((item)=>(item?.id===id?{...item,componentStyle:{...item.componentStyle,[type]:value}}:item))
