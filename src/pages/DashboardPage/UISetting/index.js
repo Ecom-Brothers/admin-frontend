@@ -1,5 +1,5 @@
 import globalStyles from '../../Components/Layout/styles.module.css'
-import { HexColorPicker } from "react-colorful";
+import { HexColorPicker } from "react-colorful"
 
 const UISetting = ({content,setContent,id})=>{
 
@@ -8,10 +8,8 @@ const UISetting = ({content,setContent,id})=>{
         setContent((prev)=>{
           return prev?.map((item)=>(item?.id===id?{...item,componentStyle:{...item.componentStyle,[type]:value}}:item))
         })
-        console.log(content)
-    
+        console.log(content)        
       }
-    
     
     return (
         <>
