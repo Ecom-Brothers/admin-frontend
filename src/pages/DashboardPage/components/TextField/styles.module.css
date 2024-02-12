@@ -25,3 +25,22 @@
     border-radius: 4px;
     margin: 6px 0;
 }
+
+.button_collector{
+    display: flex;
+    gap:10px;
+}
+
+.button_collector >*{
+    background-color: white;
+    outline: none;
+    border: 0;
+    font-size: 20px;
+    opacity: 0.75;
+    cursor: pointer;
+}
+
+.button_collector >*:hover{
+    opacity: 1;
+}
+

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styles from './styles.module.css'
 import globalStyles from '../Components/Layout/styles.module.css'
-import TextField from './TextField'
+import TextField from './components/TextField'
 import { downComponent, removeComponent, upComponent } from './utils/functions'
 
 const DashboardPage = () => 
@@ -84,9 +84,9 @@ const DashboardPage = () =>
               ))
           }
         </div>
-        <div className={styles.buttonCollector}>
-          <button onClick={()=>addText()}>Add Text</button>
-          <button onClick={()=>addImage()}>Add Image</button>
+        <div className={styles.button_collector}>
+          <button className={styles.action_button} onClick={()=>addText()}>Add Text</button>
+          <button className={styles.action_button} onClick={()=>addImage()}>Add Image</button>
         </div>
 
       </div>
